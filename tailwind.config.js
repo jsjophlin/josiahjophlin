@@ -1,8 +1,8 @@
 module.exports = {
-  purge: [],
+  purge: [".src/components/**/*.svelte", ".src/routes/**/*.svelte"],
   theme: {
     extend: {},
   },
   variants: {},
   plugins: [],
-}
+};
