@@ -5,7 +5,7 @@ workers_dev = true
 
 [env.production]
 zone_id = "e6f842264de6ce590273ecd686cce781"
-route = "*.josiahjophlin.dev/*"
+route = "*josiahjophlin.dev/*"
 
 [site]
 bucket = "./__sapper__/export"
