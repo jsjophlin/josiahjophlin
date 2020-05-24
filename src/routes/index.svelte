@@ -1,46 +1,68 @@
+<script context="module">
+  export async function preload({ params, query }) {
+    const res = await this.fetch(`index.json`);
+    const data = await res.json();
+
+    if (res.status === 200) {
+      return { page: data };
+    } else {
+      this.error(res.status, data.message);
+    }
+  }
+</script>
+
+<script>
+  export let page;
+  const { html, jobTitle, portrait, title } = page;
+</script>
+
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+  .intro {
+    text-align: center;
+    padding-bottom: 2rem;
+  }
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
+  .portrait {
+    border-radius: 100%;
+    max-width: 250px;
+  }
+  .content :global(h2) {
+    font-size: 1.4em;
+    font-weight: 500;
+  }
 
-	figure {
-		margin: 0 0 1em 0;
-	}
+  .content :global(pre) {
+    background-color: #f9f9f9;
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
+    padding: 0.5em;
+    border-radius: 2px;
+    overflow-x: auto;
+  }
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
+  .content :global(pre) :global(code) {
+    background-color: transparent;
+    padding: 0;
+  }
 
-	p {
-		margin: 1em auto;
-	}
+  .content :global(ul) {
+    line-height: 1.5;
+  }
 
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+  .content :global(li) {
+    margin: 0 0 0.5em 0;
+  }
 </style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+  <title>{title}</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<div class="intro">
+  <h1>{title}</h1>
+  <h3>{jobTitle}</h3>
+  <img class="portrait" src={portrait.src} alt={portrait.alt} />
+</div>
 
-<figure>
-	<img alt='Success Kid' src='successkid.jpg'>
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<div class="content">
+  {@html html}
+</div>

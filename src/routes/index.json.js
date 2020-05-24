@@ -1,16 +1,15 @@
 import path from "path";
 import fs from "fs";
-import { buildContent } from "../../util/markdownHelpers";
+import { buildContent } from "../util/markdownHelpers";
 
-const dir = "content/blog";
-const getPost = (fileName) =>
-  fs.readFileSync(path.resolve(dir, `${fileName}.md`), "utf-8");
+const dir = "content";
+const filename = "index.md";
 
 export function get(req, res, next) {
-  const { slug } = req.params;
-
   // get the markdown text
-  const post = getPost(slug);
+  const post = fs.readFileSync(path.resolve(dir, filename), "utf-8");
+
+  // generate the html and data
   const { data, html } = buildContent(post);
 
   if (html) {
