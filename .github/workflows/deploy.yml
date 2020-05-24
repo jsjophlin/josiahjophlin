@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - name: Build
       - uses: actions/checkout@master
+      - name: Build
       - run: npm run export
       - name: Publish
         uses: cloudflare/wrangler-action@1.1.0
