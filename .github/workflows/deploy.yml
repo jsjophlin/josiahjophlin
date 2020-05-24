@@ -1,18 +1,61 @@
+name: Build, Test and Deploy
 on:
   push:
     branches:
       - master
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    name: Deploy
     steps:
-      - uses: actions/checkout@master
-      - name: Install npm modules
-      - run: "npm install"
-      - name: Build site
-        run: "npm run export"
+      # Firstly, let's check-out our code.
+      - name: Checkout Code
+        uses: actions/checkout@master
+
+      # Now let's configure this environment to support NodeJS tooling.
+      - uses: actions/setup-node@master
+
+      # Now run an npm install...
+      - name: Install Dependencies
+        run: npm install
+
+      # Run the build-script, which is a package.json script in this case.
+      - name: Build
+        run: npm run export
+        env:
+          CI: true # This is done to prevent output being too verbose.
+
+      # Use Github's upload-artifact action to upload our hopefully-successful build!
+      # We only want the `public` folder here which contains our (optimised) static site.
+      - name: Save Build Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: site-artifact # A unique key (and name) for the artifact in question.
+          path: __sapper__/export # This is what we'd like to keep
+    # Deploy to Github Pages environment
+
+  deploy-production:
+    name: Deploy to Production
+    needs: build
+    runs-on: ubuntu-latest
+
+    # I've added this extra step, so that this task *only* runs on the master branch.
+    # This syntax is quite expressive and allows for much richer conditions.
+    if: github.ref == 'refs/heads/master'
+    steps:
+      # Again we check-out.  This time as we'll be referencing a custom action!
+      - name: Checkout
+        uses: actions/checkout@master
+
+      # And again, we download the website artifact. This time so we can deploy it!
+      - name: Download Website Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: site-artifact
+          path: __sapper__/export
+
+      # Publish to Cloudflare with wrangler
       - name: Publish
         uses: cloudflare/wrangler-action@1.1.0
         with:
