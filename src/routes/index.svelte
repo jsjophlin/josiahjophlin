@@ -17,15 +17,6 @@
 </script>
 
 <style>
-  .intro {
-    text-align: center;
-    padding-bottom: 2rem;
-  }
-
-  .portrait {
-    border-radius: 100%;
-    max-width: 250px;
-  }
   .content :global(h2) {
     font-size: 1.4em;
     font-weight: 500;
@@ -57,10 +48,13 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="intro">
+<div class="text-center">
   <h1>{title}</h1>
   <h3>{jobTitle}</h3>
-  <img class="portrait" src={portrait.src} alt={portrait.alt} />
+  <img
+    class="w-48 mx-auto rounded-full"
+    src={portrait.src}
+    alt={portrait.alt} />
 </div>
 
 <div class="content">
