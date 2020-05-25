@@ -3,7 +3,7 @@ slug: "migrating-gatsby-sapper"
 title: "Migrating from Gatsby to Sapper"
 seo:
   description: "I just migrated my old personal site from Gatsby to Sapper. It was a fun learning process with quite a few 'gotchas', but well worth the weekend spent on it."
-  ogImage: "/images/portrait-josiah-jophlin.jpg"
+  ogImage: "portrait-josiah-jophlin.jpg"
 ---
 
 # Migrating from Gatsby to Sapper

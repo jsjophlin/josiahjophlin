@@ -8,7 +8,7 @@ portrait:
 seo:
   description: "My name is Josiah Jophlin. I build valid, semantic HTML that’s search engine optimized and easily
   maintainable."
-  ogImage: "/images/portrait-josiah-jophlin.jpg"
+  ogImage: "portrait-josiah-jophlin.jpg"
 ---
 
 ## Who am I?
