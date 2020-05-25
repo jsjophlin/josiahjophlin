@@ -49,9 +49,28 @@ jobs:
           name: site-artifact
           path: __sapper__/export
 
-      # Publish to Cloudflare with wrangler
+      # Publish to Cloudflare production worker site
       - name: Publish
         uses: cloudflare/wrangler-action@1.1.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: "production"
+
+    # This task *only* runs on the branches other than master.
+    if: github.ref != 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      # We download the website artifact to deploy this time
+      - name: Download Website Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: site-artifact
+          path: __sapper__/export
+
+      # Publish to Cloudflare dev worker site
+      - name: Publish
+        uses: cloudflare/wrangler-action@1.1.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}

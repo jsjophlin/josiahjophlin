@@ -17,30 +17,8 @@
 </script>
 
 <style>
-  .content :global(h2) {
-    font-size: 1.4em;
-    font-weight: 500;
-  }
-
-  .content :global(pre) {
-    background-color: #f9f9f9;
-    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-    padding: 0.5em;
-    border-radius: 2px;
-    overflow-x: auto;
-  }
-
-  .content :global(pre) :global(code) {
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .content :global(ul) {
-    line-height: 1.5;
-  }
-
-  .content :global(li) {
-    margin: 0 0 0.5em 0;
+  .intro {
+    transform: translateY(-50%);
   }
 </style>
 
@@ -48,15 +26,20 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="text-center">
-  <h1>{title}</h1>
-  <h3>{jobTitle}</h3>
-  <img
-    class="w-48 mx-auto rounded-full"
-    src={portrait.src}
-    alt={portrait.alt} />
-</div>
+<section class="text-center h-screen flex flex-col justify-center items-center">
+  <div class="intro">
+    <h1>{title}</h1>
+    <h3 class="mb-6">{jobTitle}</h3>
+    <img
+      class="w-48 mx-auto mb-8 rounded-full"
+      src={portrait.src}
+      alt={portrait.alt} />
+    <div>
+      <button>Down arrow</button>
+    </div>
+  </div>
+</section>
 
-<div class="content">
+<section class="container-sm mx-auto">
   {@html html}
-</div>
+</section>

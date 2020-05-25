@@ -1,0 +1,24 @@
+.container-sm {
+  max-width: 100%;
+}
+
+@media (min-width: 414px) {
+  .container-sm {
+    max-width: 414px;
+  }
+}
+@media (min-width: 640px) {
+  .container-sm {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container-sm {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container-sm {
+    max-width: 1024px;
+  }
+}
