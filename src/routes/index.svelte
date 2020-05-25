@@ -28,7 +28,8 @@
   import Skill from "../components/Skill.svelte";
 
   export let page;
-  const { html, jobTitle, portrait, title } = page;
+  const { html, jobTitle, portrait, seo } = page;
+  const title = seo.title || page.title;
 
   function handleClick(e) {
     const target = document.getElementById("skip-to-content");
@@ -62,6 +63,31 @@
 
 <svelte:head>
   <title>{title}</title>
+  {#if seo.description}
+    <meta name="description" content={seo.description} />
+  {/if}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.josiahjophlin.dev" />
+  <meta property="og:title" content={title} />
+  {#if seo.description}
+    <meta property="og:description" content={seo.description} />
+  {/if}
+  {#if seo.ogImage}
+    <meta property="og:image" content={seo.ogImage} />
+  {/if}
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.josiahjophlin.dev" />
+  <meta property="twitter:title" content={title} />
+  {#if seo.description}
+    <meta property="twitter:description" content={seo.description} />
+  {/if}
+  {#if seo.ogImage}
+    <meta property="twitter:image" content={seo.ogImage} />
+  {/if}
 </svelte:head>
 
 <section class="text-center h-screen flex flex-col justify-center items-center">

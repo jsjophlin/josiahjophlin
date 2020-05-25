@@ -30,6 +30,35 @@
 
 <svelte:head>
   <title>{post.title}</title>
+  {#if post.seo.description}
+    <meta name="description" content={post.seo.description} />
+  {/if}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:url"
+    content={`https://www.josiahjophlin.dev/blog/${post.slug}`} />
+  <meta property="og:title" content={post.title} />
+  {#if post.seo.description}
+    <meta property="og:description" content={post.seo.description} />
+  {/if}
+  {#if post.seo.ogImage}
+    <meta property="og:image" content={post.seo.ogImage} />
+  {/if}
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta
+    property="twitter:url"
+    content={`https://www.josiahjophlin.dev/blog/${post.slug}`} />
+  <meta property="twitter:title" content={post.title} />
+  {#if post.seo.description}
+    <meta property="twitter:description" content={post.seo.description} />
+  {/if}
+  {#if post.seo.ogImage}
+    <meta property="twitter:image" content={post.seo.ogImage} />
+  {/if}
 </svelte:head>
 
 <section class="content">
