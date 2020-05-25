@@ -9,16 +9,30 @@
 </script>
 
 <script>
-  import Seo from "../../components/Seo.svelte";
+  const title = "Blog";
+  const description = "Josiah Jophlin's blog listing";
+  const url = "https://www.josiahjophlin.dev/blog";
+  const urlBase = "https://res.cloudinary.com/dqeuiyobt/image/upload";
+  const urlId = "v1590432733/josiahjophlin.dev";
+
   export let posts;
 </script>
 
 <svelte:head>
-  <Seo
-    title="Blog"
-    description="Josiah Jophlin's blog listing"
-    srcName="portrait-josiah-jophlin.jpg"
-    url="https://www.josiahjophlin.dev/blog" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={url} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={url} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
 </svelte:head>
 
 <section>

@@ -26,22 +26,14 @@
   } from "@fortawesome/free-brands-svg-icons";
   import Grid from "../components/Grid.svelte";
   import Skill from "../components/Skill.svelte";
-  import Seo from "../components/Seo.svelte";
 
   export let page;
 
   const { html, jobTitle, portrait, seo } = page;
   const title = seo.title || page.title;
   const ogImage = seo.ogImage || portrait.src;
-  const seoProps = {
-    title,
-    url: "https://www.josiahjophlin.dev",
-    srcName: ogImage
-  };
-
-  if (seo.description) {
-    seoProps.description = seo.description;
-  }
+  const urlBase = "https://res.cloudinary.com/dqeuiyobt/image/upload";
+  const urlId = "v1590432733/josiahjophlin.dev";
 
   function handleClick(e) {
     const target = document.getElementById("skip-to-content");
@@ -74,7 +66,36 @@
 </style>
 
 <svelte:head>
-  <Seo {...seoProps} />
+  <title>{title}</title>
+  {#if seo.description}
+    <meta name="description" content={seo.description} />
+  {/if}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.josiahjophlin.dev" />
+  <meta property="og:title" content={title} />
+  {#if seo.description}
+    <meta property="og:description" content={seo.description} />
+  {/if}
+  {#if ogImage}
+    <meta
+      property="og:image"
+      content={`${urlBase}/c_lfill,g_face,h_315,q_100,w_600,x_0/${urlId}/${ogImage}`} />
+  {/if}
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.josiahjophlin.dev" />
+  <meta property="twitter:title" content={title} />
+  {#if seo.description}
+    <meta property="twitter:description" content={seo.description} />
+  {/if}
+  {#if ogImage}
+    <meta
+      property="twitter:image"
+      content={`${urlBase}/c_fit,h_120,q_80,w_120/${urlId}/${ogImage}`} />
+  {/if}
 </svelte:head>
 
 <section class="text-center h-screen flex flex-col justify-center items-center">

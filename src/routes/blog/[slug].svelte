@@ -12,22 +12,10 @@
 </script>
 
 <script>
-  import Seo from "../../components/Seo.svelte";
+  const urlBase = "https://res.cloudinary.com/dqeuiyobt/image/upload";
+  const urlId = "v1590432733/josiahjophlin.dev";
 
   export let post;
-
-  const seoProps = {
-    title: post.seo.title || post.title,
-    url: `https://www.josiahjophlin.dev${post.slug}`
-  };
-
-  if (post.seo.description) {
-    seoProps.description = post.seo.description;
-  }
-
-  if (post.seo.ogImage) {
-    seoProps.ogImage = post.seo.ogImage;
-  }
 </script>
 
 <style>
@@ -44,7 +32,40 @@
 </style>
 
 <svelte:head>
-  <Seo {...seoProps} />
+  <title>{post.seo.title || post.title}</title>
+  {#if post.seo.description}
+    <meta name="description" content={post.seo.description} />
+  {/if}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:url"
+    content={`https://www.josiahjophlin.dev${post.slug}`} />
+  <meta property="og:title" content={post.seo.title || post.title} />
+  {#if post.seo.description}
+    <meta property="og:description" content={post.seo.description} />
+  {/if}
+  {#if post.seo.ogImage}
+    <meta
+      property="og:image"
+      content={`${urlBase}/c_lfill,g_face,h_315,q_100,w_600,x_0/${urlId}/${post.seo.ogImage}`} />
+  {/if}
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta
+    property="twitter:url"
+    content={`https://www.josiahjophlin.dev${post.slug}`} />
+  <meta property="twitter:title" content={post.seo.title || post.title} />
+  {#if post.seo.description}
+    <meta property="twitter:description" content={post.seo.description} />
+  {/if}
+  {#if post.seo.ogImage}
+    <meta
+      property="twitter:image"
+      content={`${urlBase}/c_fit,h_120,q_80,w_120/${urlId}/${post.seo.ogImage}`} />
+  {/if}
 </svelte:head>
 
 <section class="content">
