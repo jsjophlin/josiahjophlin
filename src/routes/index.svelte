@@ -100,7 +100,7 @@
       focus:outline-none mx-auto">
       <img
         class="w-48 mx-auto mb-4 rounded-full"
-        src={portrait.src}
+        src={`https://res.cloudinary.com/dqeuiyobt/image/upload/c_scale,w_200/v1590432733/josiahjophlin.dev/${portrait.src}`}
         alt={portrait.alt} />
       <Fa icon={faAngleDoubleDown} size="lg" class="icon" />
     </button>

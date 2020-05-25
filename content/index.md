@@ -3,7 +3,7 @@ slug: "home"
 title: "Josiah Jophlin"
 jobTitle: "Full stack web developer"
 portrait:
-  src: "/images/portrait-josiah-jophlin.jpg"
+  src: "portrait-josiah-jophlin.jpg"
   alt: "Josiah Jophlin portrait"
 seo:
   description: "My name is Josiah Jophlin. I build valid, semantic HTML that’s search engine optimized and easily
