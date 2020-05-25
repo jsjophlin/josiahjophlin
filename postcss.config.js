@@ -1,14 +1,14 @@
-const tailwindcss = require("tailwindcss");
-
 const purgecss = require("@fullhuman/postcss-purgecss")({
-  content: ["./src/**/*.svelte", "./src/**/*.html"],
+  content: ["./src/**/*.html", "./src/**/*.svelte"],
+
+  whitelistPatterns: [/svelte-/],
+
   defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/]+/g) || [],
 });
 
-module.exports = {
-  plugins: [
-    tailwindcss("./tailwind.config.js"),
+// const production = process.env.NODE_ENV !== "production";
+const production = !process.env.ROLLUP_WATCH;
 
-    ...(process.env.NODE_ENV === "production" ? [purgecss] : []),
-  ],
+module.exports = {
+  plugins: [require("tailwindcss"), ...(production ? [purgecss] : [])],
 };
