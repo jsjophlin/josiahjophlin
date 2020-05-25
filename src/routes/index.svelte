@@ -14,6 +14,17 @@
 <script>
   export let page;
   const { html, jobTitle, portrait, title } = page;
+
+  function handleClick(e) {
+    const target = document.getElementById("skip-to-content");
+    const elDistanceToTop =
+      window.pageYOffset + target.getBoundingClientRect().top;
+
+    window.scrollTo({
+      behavior: "smooth",
+      top: elDistanceToTop
+    });
+  }
 </script>
 
 <style>
@@ -34,6 +45,9 @@
       class="w-48 mx-auto mb-8 rounded-full"
       src={portrait.src}
       alt={portrait.alt} />
+    <div>
+      <button on:click={handleClick}>Down arrow</button>
+    </div>
   </div>
 </section>
 

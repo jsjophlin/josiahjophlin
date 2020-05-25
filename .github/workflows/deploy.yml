@@ -56,7 +56,13 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: "production"
 
-    # This task *only* runs on the branches other than master.
+  # Deploy to our production Cloudflare worker-site
+  deploy-dev:
+    name: Deploy to Dev
+    needs: build
+    runs-on: ubuntu-latest
+
+    # This task *only* runs on the master branch.
     if: github.ref != 'refs/heads/master'
     steps:
       - name: Checkout
@@ -69,7 +75,7 @@ jobs:
           name: site-artifact
           path: __sapper__/export
 
-      # Publish to Cloudflare dev worker site
+      # Publish to Cloudflare production worker site
       - name: Publish
         uses: cloudflare/wrangler-action@1.1.0
         with:
