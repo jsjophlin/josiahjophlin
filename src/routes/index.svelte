@@ -34,12 +34,9 @@
       class="w-48 mx-auto mb-8 rounded-full"
       src={portrait.src}
       alt={portrait.alt} />
-    <div>
-      <button>Down arrow</button>
-    </div>
   </div>
 </section>
 
-<section class="container-sm mx-auto">
+<section id="skip-to-content" class="container-sm mx-auto">
   {@html html}
 </section>
