@@ -13,7 +13,7 @@
 
 <Nav {segment} />
 
-<main class="mb-20 mt-12">
+<main class="mb-20">
   <slot />
 </main>
 

@@ -24,6 +24,7 @@
     faHtml5,
     faGitAlt
   } from "@fortawesome/free-brands-svg-icons";
+  import ShellTypewriter from "../components/ShellTypewriter.svelte";
   import Grid from "../components/Grid.svelte";
   import Skill from "../components/Skill.svelte";
 
@@ -49,7 +50,11 @@
 
 <style>
   .intro {
-    transform: translateY(-50%);
+    /* transform: translateY(-50%); */
+  }
+
+  .full-page {
+    height: calc(100vh - 57px);
   }
 
   .intro button :global(.icon) {
@@ -98,10 +103,10 @@
   {/if}
 </svelte:head>
 
-<section class="text-center h-screen flex flex-col justify-center items-center">
+<section
+  class="full-page text-center flex flex-col justify-center items-center">
   <div class="intro">
     <h1>{title}</h1>
-    <h3 class="mb-6">{jobTitle}</h3>
     <button
       on:click={handleClick}
       class="btn--skip-to-content flex flex-col justify-center items-center
@@ -112,6 +117,9 @@
         alt={portrait.alt} />
       <Fa icon={faAngleDoubleDown} size="lg" class="icon" />
     </button>
+    <div class="mt-20">
+      <ShellTypewriter body={jobTitle} />
+    </div>
   </div>
 </section>
 
