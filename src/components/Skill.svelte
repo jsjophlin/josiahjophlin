@@ -1,10 +1,11 @@
 <script>
   import Fa from "svelte-fa";
+  import cn from "classnames";
   import IntersectionObserver from "./IntersectionObserver.svelte";
 
   let visible = true;
 
-  export let titleItems, body, icon;
+  export let titleItems, body, classname, icon;
 </script>
 
 <style>
@@ -24,7 +25,7 @@
 <IntersectionObserver let:intersecting top={-100}>
   <div
     class:active={intersecting}
-    class="skill flex bg-gray-100 border border-gray-300 rounded p-2 opacity-0">
+    class={cn('skill flex bg-gray-100 border border-gray-300 rounded p-2 opacity-0', classname)}>
     {#if icon}
       <figure class="flex-shrink-0 mr-3">
         <Fa icon={icon.el} size="lg" class={icon.class} />

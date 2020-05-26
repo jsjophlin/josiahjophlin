@@ -136,27 +136,33 @@
       <Skill
         titleItems={['HTML', 'CSS', 'Javascript']}
         body="Fundamental web development"
-        icon={{ el: faHtml5, class: 'text-red-600' }} />
+        icon={{ el: faHtml5, class: 'text-red-600' }}
+        classname="h-full" />
       <Skill
         titleItems={['ReactJS', 'Svelte', 'Drupal', 'Wordpress']}
         body="Frontend web development"
-        icon={{ el: faCode, class: 'text-green-500' }} />
+        icon={{ el: faCode, class: 'text-green-500' }}
+        classname="h-full" />
       <Skill
         titleItems={['AWS', 'Google Cloud']}
         body="Cloud computing services"
-        icon={{ el: faCloud, class: 'text-gray-600' }} />
+        icon={{ el: faCloud, class: 'text-gray-600' }}
+        classname="h-full" />
       <Skill
         titleItems={['Git']}
         body="Version control (VCS)"
-        icon={{ el: faGitAlt, class: 'text-red-600' }} />
+        icon={{ el: faGitAlt, class: 'text-red-600' }}
+        classname="h-full" />
       <Skill
         titleItems={['MongoDB', 'MySQL']}
         body="Database management systems"
-        icon={{ el: faDatabase, class: 'text-indigo-800' }} />
+        icon={{ el: faDatabase, class: 'text-indigo-800' }}
+        classname="h-full" />
       <Skill
         titleItems={['Adobe CC']}
         body="'UI design"
-        icon={{ el: faAdobe, class: 'text-red-600' }} />
+        icon={{ el: faAdobe, class: 'text-red-600' }}
+        classname="h-full" />
     </Grid>
   </div>
 </section>
