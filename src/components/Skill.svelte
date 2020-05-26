@@ -9,23 +9,16 @@
 </script>
 
 <style>
-  .skill {
-    transition: opacity var(--timing-sm) linear;
-  }
-  .active {
-    @apply opacity-100;
-  }
-
   .list-item > span:not(:last-child)::after {
     @apply inline-block px-1;
     content: "•";
   }
 </style>
 
-<IntersectionObserver let:intersecting top={-100}>
+<IntersectionObserver let:intersecting top={-100} once>
   <div
     class:active={intersecting}
-    class={cn('skill flex bg-gray-100 border border-gray-300 rounded p-2 opacity-0', classname)}>
+    class={cn('flex bg-gray-100 border border-gray-300 rounded p-2 fade-in opacity-0', classname)}>
     {#if icon}
       <figure class="flex-shrink-0 mr-3">
         <Fa icon={icon.el} size="lg" class={icon.class} />

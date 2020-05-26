@@ -24,6 +24,7 @@
     faHtml5,
     faGitAlt
   } from "@fortawesome/free-brands-svg-icons";
+  import IntersectionObserver from "../components/IntersectionObserver.svelte";
   import ShellTypewriter from "../components/ShellTypewriter.svelte";
   import Grid from "../components/Grid.svelte";
   import Skill from "../components/Skill.svelte";
@@ -49,12 +50,8 @@
 </script>
 
 <style>
-  .intro {
-    /* transform: translateY(-50%); */
-  }
-
   .full-page {
-    height: calc(100vh - 57px);
+    height: calc(100vh - 89px);
   }
 
   .intro button :global(.icon) {
@@ -106,7 +103,7 @@
 <section
   class="full-page text-center flex flex-col justify-center items-center">
   <div class="intro">
-    <h1>{title}</h1>
+    <h1 class="mb-8">{title}</h1>
     <button
       on:click={handleClick}
       class="btn--skip-to-content flex flex-col justify-center items-center
@@ -124,14 +121,22 @@
 </section>
 
 <section id="skip-to-content" class="mb-12">
-  <div class="container-sm mx-auto">
-    {@html html}
-  </div>
+  <IntersectionObserver let:intersecting top={-100} once>
+    <div
+      class:active={intersecting}
+      class="container-sm mx-auto fade-in opacity-0">
+      {@html html}
+    </div>
+  </IntersectionObserver>
 </section>
 
 <section class="mb-12">
   <div class="container-sm mx-auto">
-    <h2>Here are some things I know...</h2>
+    <IntersectionObserver let:intersecting top={-100} once>
+      <h2 class:active={intersecting} class="fade-in opacity-0 mb-6">
+        Here are some things I know...
+      </h2>
+    </IntersectionObserver>
     <Grid cols="3">
       <Skill
         titleItems={['HTML', 'CSS', 'Javascript']}

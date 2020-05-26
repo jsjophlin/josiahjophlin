@@ -42,7 +42,7 @@
   }
 </style>
 
-<nav>
+<nav class="mb-8">
   <ul>
     <li>
       <a
