@@ -43,6 +43,6 @@
   });
 </script>
 
-<div bind:this={container}>
+<span bind:this={container}>
   <slot {intersecting} />
-</div>
+</span>

@@ -13,6 +13,7 @@
 
 <script>
   import Fa from "svelte-fa";
+  import zenscroll from "zenscroll";
   import {
     faAngleDoubleDown,
     faCloud,
@@ -39,13 +40,7 @@
 
   function handleClick(e) {
     const target = document.getElementById("skip-to-content");
-    const elDistanceToTop =
-      window.pageYOffset + target.getBoundingClientRect().top;
-
-    window.scrollTo({
-      behavior: "smooth",
-      top: elDistanceToTop
-    });
+    zenscroll.to(target);
   }
 </script>
 
@@ -120,7 +115,7 @@
   </div>
 </section>
 
-<section id="skip-to-content" class="mb-12">
+<section id="skip-to-content" class="smooth-container mb-12">
   <IntersectionObserver let:intersecting top={-100} once>
     <div
       class:active={intersecting}
